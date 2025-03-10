@@ -10,4 +10,3 @@ def extract_text(pdf_filename):
         extracted_text += page.get_text() + "\n"  
     return extracted_text
 
-print(extract_text("cover.pdf"))
