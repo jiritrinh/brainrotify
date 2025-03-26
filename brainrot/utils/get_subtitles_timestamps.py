@@ -7,10 +7,10 @@ from pathlib import Path
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key)
-BASE_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 def timestamp_audio(audio_name):
-    audio_file_path = Path(__file__).parent / "speech.mp3"
+    audio_file_path = os.path.join(BASE_DIR, "source_for_video", audio_name)
 
     audio_file= open(audio_file_path, "rb")
     transcription = client.audio.transcriptions.create(

@@ -9,13 +9,19 @@ video_file = "brainrot_video.mp4"
 audio_file = "speech.mp3"
 subtitles =  "subtitles.srt"
 
- 
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+video_path = os.path.join(BASE_DIR, "source_for_video", video_file)
+audio_path = os.path.join(BASE_DIR, "source_for_video", audio_file)
+subtitles_path = os.path.join(BASE_DIR, "source_for_video", subtitles)
+
+
+
 
 def create_video(video_file, audio_file, subtitles):
-    
-    video_path = str(Path(__file__).parent / video_file)  
-    audio_path = str(Path(__file__).parent / audio_file)  
-    subtitles_path = str(Path(__file__).parent / subtitles)
+    video_path = os.path.join(BASE_DIR, "source_for_video", video_file)
+    audio_path = os.path.join(BASE_DIR, "source_for_video", audio_file)
+    subtitles_path = os.path.join(BASE_DIR, "source_for_video", subtitles)
     
     cmd = f"""
         ffmpeg -i {video_path} -i {audio_path} \
@@ -33,8 +39,11 @@ def create_video(video_file, audio_file, subtitles):
         -movflags +faststart \
         -y output_first.mp4
         """
-    subprocess.run(cmd, shell=True)  
         
+    
+    subprocess.run(cmd, shell=True)
+    
+
 
 
 
